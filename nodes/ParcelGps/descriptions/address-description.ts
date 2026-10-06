@@ -52,4 +52,12 @@ export const addressFields: INodeProperties[] = [
 		description: 'Max number of candidate parcels to return',
 		displayOptions: { show: forAddress },
 	},
+	{
+		displayName: 'Simplify',
+		name: 'simplify',
+		type: 'boolean',
+		default: true,
+		description: 'Whether to return a simplified version of the response instead of the raw data',
+		displayOptions: { show: forAddress },
+	},
 ];

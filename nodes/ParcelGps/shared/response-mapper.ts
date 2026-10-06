@@ -97,6 +97,48 @@ export function mapParcel(data: IDataObject, includeGeometry: boolean, requested
 	return parcel;
 }
 
+const SIMPLIFIED_PARCEL_FIELDS = [
+	'reference',
+	'country',
+	'lat',
+	'lon',
+	'areaM2',
+	'address',
+	'municipality',
+	'province',
+	'landUse',
+	'geometry',
+];
+
+const SIMPLIFIED_ADDRESS_FIELDS = [
+	'reference',
+	'country',
+	'address',
+	'number',
+	'postalCode',
+	'municipality',
+	'lat',
+	'lon',
+	'confidence',
+	'landUse',
+];
+
+function pick(record: IDataObject, fields: string[]): IDataObject {
+	const result: IDataObject = {};
+	for (const field of fields) {
+		if (field in record) result[field] = record[field];
+	}
+	return result;
+}
+
+export function simplifyParcel(parcel: IDataObject): IDataObject {
+	return pick(parcel, SIMPLIFIED_PARCEL_FIELDS);
+}
+
+export function simplifyAddressCandidate(candidate: IDataObject): IDataObject {
+	return pick(candidate, SIMPLIFIED_ADDRESS_FIELDS);
+}
+
 export function mapGeometry(data: IDataObject, reference: string, requestedCountry = ''): IDataObject {
 	const parcel = mapParcel(data, true, requestedCountry);
 	return {

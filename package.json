@@ -1,6 +1,6 @@
 {
 	"name": "n8n-nodes-parcel-gps",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "n8n node for the Parcel GPS API: official cadastral parcels from 29 European countries by cadastral reference, coordinates or free text",
 	"license": "MIT",
 	"homepage": "https://www.parcelgps.com/developers",
@@ -20,7 +20,7 @@
 	],
 	"author": {
 		"name": "The Hidden Panda",
-		"email": "soporte@catastrogps.es"
+		"email": "daniel.roman@thehiddenpanda.com"
 	},
 	"repository": {
 		"type": "git",
@@ -41,7 +41,10 @@
 		"prepublishOnly": "n8n-node prerelease"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"!dist/make-app",
+		"!dist/**/*.tsbuildinfo",
+		"!dist/**/*.d.ts"
 	],
 	"n8n": {
 		"n8nNodesApiVersion": 1,

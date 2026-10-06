@@ -19,6 +19,8 @@ import {
 	mapParcel,
 	mapResolve,
 	mapUnits,
+	simplifyAddressCandidate,
+	simplifyParcel,
 	unwrapData,
 } from './response-mapper';
 
@@ -85,13 +87,18 @@ async function fetchAllUnitPages(
 	throw new ParcelGpsInputError(`The building has more than ${MAX_UNIT_PAGES} pages of units`);
 }
 
+function parcelOutput(read: ParameterReader, data: IDataObject, country: string): IDataObject {
+	const parcel = mapParcel(data, read('includeGeometry') === true, country);
+	return read('simplify') === true ? simplifyParcel(parcel) : parcel;
+}
+
 type Handler = (read: ParameterReader, transport: Transport) => Promise<IDataObject[]>;
 
 const handlers: Record<string, Handler> = {
 	'parcel:getByReference': async (read, transport) => {
 		const country = text(read, 'country');
 		const data = await send(transport, parcelByReferenceRequest(text(read, 'reference'), country));
-		return [mapParcel(data, read('includeGeometry') === true, country)];
+		return [parcelOutput(read, data, country)];
 	},
 	'parcel:getAtCoordinates': async (read, transport) => {
 		const country = text(read, 'country');
@@ -99,7 +106,7 @@ const handlers: Record<string, Handler> = {
 			transport,
 			parcelAtCoordinatesRequest(read('latitude'), read('longitude'), country),
 		);
-		return [mapParcel(data, read('includeGeometry') === true, country)];
+		return [parcelOutput(read, data, country)];
 	},
 	'parcel:getGeometry': async (read, transport) => {
 		const reference = text(read, 'reference');
@@ -117,7 +124,8 @@ const handlers: Record<string, Handler> = {
 			transport,
 			addressSearchRequest(text(read, 'address'), text(read, 'country'), limit),
 		);
-		return mapAddressCandidates(data);
+		const candidates = mapAddressCandidates(data);
+		return read('simplify') === true ? candidates.map(simplifyAddressCandidate) : candidates;
 	},
 	'building:getUnits': async (read, transport) => {
 		const pages = await fetchAllUnitPages(transport, text(read, 'reference'), text(read, 'country'));

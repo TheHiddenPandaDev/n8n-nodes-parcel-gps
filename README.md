@@ -2,8 +2,6 @@
 
 This is an n8n community node for the [Parcel GPS API](https://www.parcelgps.com/developers). It returns official cadastral parcels from **29 European countries** (including the Basque Country and Navarre foral cadastres): by cadastral reference in 27 countries and by coordinates in all 29, with outline (GeoJSON), area, municipality and centroid.
 
-The repository also contains the [Make (make.com) custom app](#make-custom-app) for the same API in `make-app/`.
-
 [n8n](https://n8n.io/) is a fair-code licensed workflow automation platform.
 
 - [Installation](#installation)
@@ -11,8 +9,11 @@ The repository also contains the [Make (make.com) custom app](#make-custom-app) 
 - [Operations](#operations)
 - [Output](#output)
 - [Errors](#errors)
-- [Make custom app](#make-custom-app)
+- [Compatibility](#compatibility)
+- [Usage](#usage)
+- [Example workflow](#example-workflow)
 - [Development](#development)
+- [Version history](#version-history)
 
 ## Installation
 
@@ -44,7 +45,7 @@ The node is usable as a tool by the n8n AI Agent.
 
 ## Output
 
-Parcel operations return flat JSON with English keys. **Include Geometry** adds the outline as a GeoJSON `Polygon` (`[lon, lat]` order) in `geometry`, or `null` when the official source has no outline.
+Parcel operations return flat JSON with English keys. **Simplify** (on by default for Parcel → Get by Reference, Parcel → Get at Coordinates and Address → Search) keeps the ten most useful fields; turn it off to get every field the official source publishes, as in the example below. **Include Geometry** adds the outline as a GeoJSON `Polygon` (`[lon, lat]` order) in `geometry`, or `null` when the official source has no outline.
 
 ```json
 {
@@ -83,22 +84,29 @@ Fields the source country does not publish are left out.
 
 With **Continue On Fail**, failed items are returned as `{ "error": "...", "description": "..." }` and the rest of the batch keeps running.
 
-## Make custom app
+## Compatibility
 
-`make-app/` holds the Make custom app in the layout of the [Make Apps VS Code extension](https://developers.make.com/custom-apps-documentation/get-started/make-apps-editor/apps-sdk/local-development-for-apps): `makecomapp.json` is the manifest, `general/` has the base (base URL, `X-API-Key` header, error handling, log sanitization), `connections/parcelGps/` the API key connection and `modules/` six modules: Get a Parcel by Reference, Get a Parcel at Coordinates, Get a Parcel Geometry, Resolve Text, Search Parcels by Address and Make an API Call (universal module). The app icon is `make-app/assets/icon.png` (512×512).
+Built with the `n8n-node` CLI and tested with n8n 1.x (nodes API version 1). The package has no runtime dependencies.
 
-To create it in Make:
+## Usage
 
-1. In Make, open **Custom Apps** (left menu, or `https://eu1.make.com/apps`, matching your zone) and click **Create a new app**: name `parcel-gps`, label `Parcel GPS`, description "Official cadastral parcels from 29 European countries", theme `#1E40AF`, language English, audience Global. Upload `make-app/assets/icon.png` as the logo.
-2. In Make, open your profile → **API access** → **Add token** with the scopes `apps:read` and `apps:write`.
-3. In VS Code, install the **Make Apps Editor** extension, run **Make: Add environment** with your zone URL (for example `eu1.make.com`) and paste the token.
-4. Open this repository in VS Code. If the app ID Make gave you is not `parcel-gps`, or your zone is not `eu1`, edit `origins[0].appId` and `origins[0].baseUrl` in `make-app/makecomapp.json`.
-5. Save the token in `.secrets/apikey` at the repository root (the path is ignored by git), right-click `make-app/makecomapp.json` and choose **Deploy to Make**. Pair each local component with "create new" when asked.
-6. In a scenario, create a Parcel GPS connection with a real API key and run every module once (including one that fails, for example a non-existent reference) so the execution logs exist for the reviewer.
+1. Add the **Parcel GPS** node to a workflow and select your **Parcel GPS API** credential.
+2. Pick a **Resource** and an **Operation**. Every text field accepts expressions, so the reference, coordinates or address can come from a previous node (a spreadsheet row, a form submission, a webhook).
+3. Leave **Country** on **Auto-Detect** unless the API answers that the reference matches more than one country.
+4. For long lists, keep **Simplify** on and enable **Retry On Fail** in the node settings so per-minute rate limits are retried.
 
-Without the extension, each file can be pasted into the matching tab of the online editor: `general/base.iml.json` → Base; `connections/parcelGps/communication.iml.json` and `params.iml.json` → Connection (type: API key) → Communication and Parameters; for each module, `communication`, `static-params`, `mappable-params`, `interface` and `samples` into the tabs with the same names.
+Typical uses: enrich a list of cadastral references with area, municipality and coordinates; find the parcel under a GPS point collected in the field; turn a postal address into candidate parcels; give an AI Agent a tool to look up parcels.
 
-To publish it for every Make user, follow [Request app review](https://developers.make.com/custom-apps-documentation/app-review/request-app-review): click **Publish** in the app (it cannot be unpublished), make every module visible, open the **Review** tab, add the API documentation link (`https://www.parcelgps.com/developers`) and the links to the test scenarios, and click **Request review**. Make answers by email with an automatic review (PDF) and then a manual one.
+## Example workflow
+
+Enrich a list of cadastral references and get one row per parcel:
+
+1. **Manual Trigger**.
+2. **Code** node that returns one item per reference, for example `return [{ json: { reference: '9872023VH5797S0001WX' } }];`.
+3. **Parcel GPS** node: Resource **Parcel**, Operation **Get by Reference**, Cadastral Reference `{{ $json.reference }}`, Country **Auto-Detect**, Simplify on.
+4. Any destination node (Google Sheets, Postgres, Airtable) to store `reference`, `country`, `lat`, `lon`, `areaM2`, `municipality` and `province`.
+
+The same pattern works with Parcel → Get at Coordinates (`{{ $json.lat }}` and `{{ $json.lon }}`) and Address → Search (`{{ $json.address }}`, one output item per candidate).
 
 ## Development
 
@@ -115,7 +123,11 @@ npm run dev
 ## Resources
 
 - [Parcel GPS API documentation](https://www.parcelgps.com/developers)
-- [n8n community nodes documentation](https://docs.n8n.io/integrations/#community-nodes)
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/installation-and-management/)
+
+## Version history
+
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

@@ -17,7 +17,7 @@ export const buildingOperations: INodeProperties[] = [
 				value: 'getUnits',
 				description:
 					'Get every dwelling, shop and garage of a building in Spain with its floor, door, use and area',
-				action: 'Get the units of a building',
+				action: 'Get building units',
 			},
 		],
 		default: 'getUnits',

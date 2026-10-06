@@ -16,19 +16,19 @@ export const parcelOperations: INodeProperties[] = [
 				name: 'Get by Reference',
 				value: 'getByReference',
 				description: 'Get an official cadastral parcel from its cadastral reference',
-				action: 'Get a parcel by cadastral reference',
+				action: 'Get parcel by cadastral reference',
 			},
 			{
 				name: 'Get at Coordinates',
 				value: 'getAtCoordinates',
 				description: 'Get the cadastral parcel that contains a WGS84 point',
-				action: 'Get the parcel at coordinates',
+				action: 'Get parcel at coordinates',
 			},
 			{
 				name: 'Get Geometry',
 				value: 'getGeometry',
 				description: 'Get the parcel outline as GeoJSON with its centroid and area',
-				action: 'Get the geometry of a parcel',
+				action: 'Get parcel geometry',
 			},
 		],
 		default: 'getByReference',
@@ -94,6 +94,14 @@ export const parcelFields: INodeProperties[] = [
 		default: false,
 		description:
 			'Whether to add the parcel outline as a GeoJSON Polygon in the geometry field when the official source provides it',
+		displayOptions: { show: { ...forParcel, operation: ['getByReference', 'getAtCoordinates'] } },
+	},
+	{
+		displayName: 'Simplify',
+		name: 'simplify',
+		type: 'boolean',
+		default: true,
+		description: 'Whether to return a simplified version of the response instead of the raw data',
 		displayOptions: { show: { ...forParcel, operation: ['getByReference', 'getAtCoordinates'] } },
 	},
 ];

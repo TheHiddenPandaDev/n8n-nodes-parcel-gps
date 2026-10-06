@@ -91,6 +91,54 @@ describe('runOperation', () => {
 		expect(results).toHaveLength(1);
 	});
 
+	it('simplifies a parcel to at most ten fields and keeps the requested geometry', async () => {
+		const transport = transportReturning(ok(spanishParcel));
+		const [parcel] = await runOperation(
+			'parcel',
+			'getByReference',
+			reader({ reference: '9872023VH5797S0001WX', includeGeometry: true, simplify: true }),
+			transport,
+		);
+		expect(Object.keys(parcel).length).toBeLessThanOrEqual(10);
+		expect(parcel).toMatchObject({ reference: '9872023VH5797S0001WX', municipality: 'MADRID', landUse: 'Residencial' });
+		expect(parcel.geometry.type).toBe('Polygon');
+		expect(parcel).not.toHaveProperty('googleMapsUrl');
+		expect(parcel).not.toHaveProperty('constructionYear');
+	});
+
+	it('simplifies the parcel at coordinates without inventing missing fields', async () => {
+		const transport = transportReturning(ok(pointMatch));
+		const [parcel] = await runOperation(
+			'parcel',
+			'getAtCoordinates',
+			reader({ latitude: 40.4168, longitude: -3.7038, simplify: true }),
+			transport,
+		);
+		expect(parcel).toEqual({
+			reference: '9872023VH5797S0001WX',
+			country: 'ES',
+			lat: 40.4168,
+			lon: -3.7038,
+			address: 'CL MAYOR 1',
+			municipality: 'MADRID',
+			province: 'MADRID',
+		});
+	});
+
+	it('simplifies every address candidate to at most ten fields', async () => {
+		const transport = transportReturning(ok(addressCandidates));
+		const [candidate] = await runOperation(
+			'address',
+			'search',
+			reader({ address: 'Calle Mayor 1', maxResults: 3, simplify: true }),
+			transport,
+		);
+		expect(Object.keys(candidate).length).toBeLessThanOrEqual(10);
+		expect(candidate).toMatchObject({ reference: '9872023VH5797S', confidence: 0.98, landUse: 'Residencial' });
+		expect(candidate).not.toHaveProperty('matchesNumber');
+		expect(candidate).not.toHaveProperty('attribution');
+	});
+
 	it('follows the units cursor until the last page', async () => {
 		const transport = transportReturning(
 			ok(unitsPage({ truncated: true, nextCursor: 'CURSOR2' })),
