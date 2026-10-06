@@ -1,0 +1,46 @@
+{
+    "baseUrl": "https://api.parcelgps.com",
+    "headers": {
+        "X-API-Key": "{{connection.apiKey}}",
+        "Accept": "application/json"
+    },
+    "response": {
+        "valid": {
+            "condition": "{{statusCode < 300}}",
+            "message": "{{ifempty(body.error, \"The reference matches more than one country. Set the Country field.\")}}",
+            "type": "DataError"
+        },
+        "error": {
+            "message": "[{{statusCode}}] {{ifempty(body.error, body.message)}}",
+            "401": {
+                "message": "Invalid or missing API key. Check the Parcel GPS connection. [{{body.code}}] {{body.error}}",
+                "type": "InvalidAccessTokenError"
+            },
+            "403": {
+                "message": "This API key cannot use this operation. [{{body.code}}] {{body.error}}",
+                "type": "InvalidConfigurationError"
+            },
+            "404": {
+                "message": "Parcel not found. Failed lookups are not charged. [{{body.code}}] {{body.error}}",
+                "type": "DataError"
+            },
+            "422": {
+                "message": "[{{body.code}}] {{body.error}}",
+                "type": "DataError"
+            },
+            "429": {
+                "message": "[{{body.code}}] {{ifempty(body.error, \"Too many requests\")}}",
+                "type": "RateLimitError"
+            },
+            "503": {
+                "message": "The official cadastre is temporarily unavailable. Failed lookups are not charged.",
+                "type": "ConnectionError"
+            }
+        }
+    },
+    "log": {
+        "sanitize": [
+            "request.headers.x-api-key"
+        ]
+    }
+}

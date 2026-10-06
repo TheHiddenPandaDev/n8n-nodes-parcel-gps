@@ -1,0 +1,98 @@
+[
+    {
+        "name": "reference",
+        "type": "text",
+        "label": "Cadastral reference"
+    },
+    {
+        "name": "reference14",
+        "type": "text",
+        "label": "Building reference (14 characters)"
+    },
+    {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+    },
+    {
+        "name": "lat",
+        "type": "number",
+        "label": "Latitude"
+    },
+    {
+        "name": "lon",
+        "type": "number",
+        "label": "Longitude"
+    },
+    {
+        "name": "areaM2",
+        "type": "number",
+        "label": "Parcel area (m²)"
+    },
+    {
+        "name": "builtAreaM2",
+        "type": "number",
+        "label": "Built area (m²)"
+    },
+    {
+        "name": "address",
+        "type": "text",
+        "label": "Address"
+    },
+    {
+        "name": "postalCode",
+        "type": "text",
+        "label": "Postal code"
+    },
+    {
+        "name": "municipality",
+        "type": "text",
+        "label": "Municipality"
+    },
+    {
+        "name": "province",
+        "type": "text",
+        "label": "Province or region"
+    },
+    {
+        "name": "landUse",
+        "type": "text",
+        "label": "Land use"
+    },
+    {
+        "name": "landClass",
+        "type": "text",
+        "label": "Land class"
+    },
+    {
+        "name": "propertyType",
+        "type": "text",
+        "label": "Property type"
+    },
+    {
+        "name": "constructionYear",
+        "type": "uinteger",
+        "label": "Construction year"
+    },
+    {
+        "name": "source",
+        "type": "text",
+        "label": "Data source"
+    },
+    {
+        "name": "googleMapsUrl",
+        "type": "url",
+        "label": "Google Maps URL"
+    },
+    {
+        "name": "outlineLatLng",
+        "type": "array",
+        "label": "Outline ([lat, lng] points)",
+        "spec": {
+            "type": "array",
+            "spec": {
+                "type": "number"
+            }
+        }
+    }
+]

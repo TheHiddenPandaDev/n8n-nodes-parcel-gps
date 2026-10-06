@@ -1,0 +1,15 @@
+{
+    "reference": "9872023VH5797S",
+    "country": "ES",
+    "address": "CL MAYOR 1",
+    "number": 1,
+    "postalCode": "28013",
+    "municipality": "MADRID",
+    "province": "MADRID",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "confidence": 0.98,
+    "matchesNumber": true,
+    "matchesMunicipality": true,
+    "landUse": "Residencial"
+}

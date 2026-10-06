@@ -1,0 +1,136 @@
+[
+    {
+        "name": "address",
+        "type": "text",
+        "label": "Address",
+        "required": true,
+        "help": "Street, number and town. For example: `Calle Mayor 1, Madrid`."
+    },
+    {
+        "name": "country",
+        "type": "select",
+        "label": "Country",
+        "options": [
+            {
+                "label": "Austria (AT)",
+                "value": "AT"
+            },
+            {
+                "label": "Belgium (BE)",
+                "value": "BE"
+            },
+            {
+                "label": "Bulgaria (BG)",
+                "value": "BG"
+            },
+            {
+                "label": "Cyprus (CY)",
+                "value": "CY"
+            },
+            {
+                "label": "Czechia (CZ)",
+                "value": "CZ"
+            },
+            {
+                "label": "Denmark (DK)",
+                "value": "DK"
+            },
+            {
+                "label": "Estonia (EE)",
+                "value": "EE"
+            },
+            {
+                "label": "Finland (FI)",
+                "value": "FI"
+            },
+            {
+                "label": "France (FR)",
+                "value": "FR"
+            },
+            {
+                "label": "Germany (DE)",
+                "value": "DE"
+            },
+            {
+                "label": "Greece (GR)",
+                "value": "GR"
+            },
+            {
+                "label": "Iceland (IS)",
+                "value": "IS"
+            },
+            {
+                "label": "Ireland (IE)",
+                "value": "IE"
+            },
+            {
+                "label": "Italy (IT)",
+                "value": "IT"
+            },
+            {
+                "label": "Latvia (LV)",
+                "value": "LV"
+            },
+            {
+                "label": "Liechtenstein (LI)",
+                "value": "LI"
+            },
+            {
+                "label": "Lithuania (LT)",
+                "value": "LT"
+            },
+            {
+                "label": "Luxembourg (LU)",
+                "value": "LU"
+            },
+            {
+                "label": "Netherlands (NL)",
+                "value": "NL"
+            },
+            {
+                "label": "Norway (NO)",
+                "value": "NO"
+            },
+            {
+                "label": "Poland (PL)",
+                "value": "PL"
+            },
+            {
+                "label": "Portugal (PT)",
+                "value": "PT"
+            },
+            {
+                "label": "Slovakia (SK)",
+                "value": "SK"
+            },
+            {
+                "label": "Slovenia (SI)",
+                "value": "SI"
+            },
+            {
+                "label": "Spain (ES)",
+                "value": "ES"
+            },
+            {
+                "label": "Switzerland (CH)",
+                "value": "CH"
+            },
+            {
+                "label": "United Kingdom - Scotland (coordinates only) (UK)",
+                "value": "UK"
+            }
+        ],
+        "help": "Leave empty to search every supported country."
+    },
+    {
+        "name": "limit",
+        "type": "uinteger",
+        "label": "Limit",
+        "default": 5,
+        "validate": {
+            "min": 1,
+            "max": 10
+        },
+        "help": "Maximum number of results to return during one execution cycle (1 to 10)."
+    }
+]

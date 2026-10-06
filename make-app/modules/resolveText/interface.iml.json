@@ -1,0 +1,69 @@
+[
+    {
+        "name": "input",
+        "type": "text",
+        "label": "Input"
+    },
+    {
+        "name": "ambiguous",
+        "type": "boolean",
+        "label": "Ambiguous"
+    },
+    {
+        "name": "country",
+        "type": "text",
+        "label": "Best country"
+    },
+    {
+        "name": "kind",
+        "type": "text",
+        "label": "Kind (reference, coordinates, place_name)"
+    },
+    {
+        "name": "normalized",
+        "type": "text",
+        "label": "Normalized value"
+    },
+    {
+        "name": "confidence",
+        "type": "number",
+        "label": "Confidence"
+    },
+    {
+        "name": "supported",
+        "type": "boolean",
+        "label": "Supported"
+    },
+    {
+        "name": "candidates",
+        "type": "array",
+        "label": "Candidates",
+        "spec": [
+            {
+                "name": "country",
+                "type": "text",
+                "label": "Country"
+            },
+            {
+                "name": "kind",
+                "type": "text",
+                "label": "Kind"
+            },
+            {
+                "name": "normalized",
+                "type": "text",
+                "label": "Normalized value"
+            },
+            {
+                "name": "confidence",
+                "type": "number",
+                "label": "Confidence"
+            },
+            {
+                "name": "supported",
+                "type": "boolean",
+                "label": "Supported"
+            }
+        ]
+    }
+]

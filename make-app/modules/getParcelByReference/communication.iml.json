@@ -1,0 +1,29 @@
+{
+    "url": "/api/catastro/{{encodeURL(trim(parameters.reference))}}",
+    "method": "GET",
+    "qs": {
+        "country": "{{parameters.country}}"
+    },
+    "response": {
+        "output": {
+            "reference": "{{ifempty(body.data.refCatastral, body.data.referenciaCatastral)}}",
+            "reference14": "{{body.data.refCat14}}",
+            "country": "{{ifempty(body.data.pais, parameters.country)}}",
+            "lat": "{{ifempty(body.data.latitud, body.data.coordenadas.latitud)}}",
+            "lon": "{{ifempty(body.data.longitud, body.data.coordenadas.longitud)}}",
+            "areaM2": "{{body.data.superficieParcela}}",
+            "builtAreaM2": "{{body.data.superficieConstruida}}",
+            "address": "{{body.data.direccion}}",
+            "postalCode": "{{body.data.codigoPostal}}",
+            "municipality": "{{body.data.municipio}}",
+            "province": "{{body.data.provincia}}",
+            "landUse": "{{body.data.uso}}",
+            "landClass": "{{body.data.clase}}",
+            "propertyType": "{{body.data.tipoInmueble}}",
+            "constructionYear": "{{body.data.anioConstruccion}}",
+            "source": "{{body.data.fuenteDatos}}",
+            "googleMapsUrl": "{{body.data.googleMapsUrl}}",
+            "outlineLatLng": "{{if(parameters.includeOutline, body.data.poligono, null)}}"
+        }
+    }
+}

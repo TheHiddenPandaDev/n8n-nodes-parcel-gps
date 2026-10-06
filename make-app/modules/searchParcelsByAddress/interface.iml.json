@@ -1,0 +1,67 @@
+[
+    {
+        "name": "reference",
+        "type": "text",
+        "label": "Cadastral reference"
+    },
+    {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+    },
+    {
+        "name": "address",
+        "type": "text",
+        "label": "Address"
+    },
+    {
+        "name": "number",
+        "type": "uinteger",
+        "label": "Street number"
+    },
+    {
+        "name": "postalCode",
+        "type": "text",
+        "label": "Postal code"
+    },
+    {
+        "name": "municipality",
+        "type": "text",
+        "label": "Municipality"
+    },
+    {
+        "name": "province",
+        "type": "text",
+        "label": "Province or region"
+    },
+    {
+        "name": "lat",
+        "type": "number",
+        "label": "Latitude"
+    },
+    {
+        "name": "lon",
+        "type": "number",
+        "label": "Longitude"
+    },
+    {
+        "name": "confidence",
+        "type": "number",
+        "label": "Confidence"
+    },
+    {
+        "name": "matchesNumber",
+        "type": "boolean",
+        "label": "Street number matches"
+    },
+    {
+        "name": "matchesMunicipality",
+        "type": "boolean",
+        "label": "Municipality matches"
+    },
+    {
+        "name": "landUse",
+        "type": "text",
+        "label": "Land use"
+    }
+]

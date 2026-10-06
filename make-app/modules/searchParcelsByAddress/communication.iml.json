@@ -1,0 +1,28 @@
+{
+    "url": "/api/search/address/candidates",
+    "method": "GET",
+    "qs": {
+        "q": "{{parameters.address}}",
+        "country": "{{parameters.country}}",
+        "limit": "{{parameters.limit}}"
+    },
+    "response": {
+        "iterate": "{{body.data.candidatos}}",
+        "limit": "{{parameters.limit}}",
+        "output": {
+            "reference": "{{item.refCatastral}}",
+            "country": "{{item.pais}}",
+            "address": "{{item.direccion}}",
+            "number": "{{item.numero}}",
+            "postalCode": "{{item.codigoPostal}}",
+            "municipality": "{{item.municipio}}",
+            "province": "{{item.provincia}}",
+            "lat": "{{item.latitud}}",
+            "lon": "{{item.longitud}}",
+            "confidence": "{{item.confianza}}",
+            "matchesNumber": "{{item.coincideNumero}}",
+            "matchesMunicipality": "{{item.coincideMunicipio}}",
+            "landUse": "{{item.uso}}"
+        }
+    }
+}

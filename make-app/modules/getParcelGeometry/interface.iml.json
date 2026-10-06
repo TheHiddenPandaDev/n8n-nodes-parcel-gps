@@ -1,0 +1,43 @@
+[
+    {
+        "name": "reference",
+        "type": "text",
+        "label": "Cadastral reference"
+    },
+    {
+        "name": "country",
+        "type": "text",
+        "label": "Country"
+    },
+    {
+        "name": "lat",
+        "type": "number",
+        "label": "Centroid latitude"
+    },
+    {
+        "name": "lon",
+        "type": "number",
+        "label": "Centroid longitude"
+    },
+    {
+        "name": "areaM2",
+        "type": "number",
+        "label": "Area (m²)"
+    },
+    {
+        "name": "geojson",
+        "type": "any",
+        "label": "GeoJSON geometry"
+    },
+    {
+        "name": "outlineLatLng",
+        "type": "array",
+        "label": "Outline ([lat, lng] points)",
+        "spec": {
+            "type": "array",
+            "spec": {
+                "type": "number"
+            }
+        }
+    }
+]

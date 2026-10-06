@@ -1,0 +1,18 @@
+{
+    "url": "/api/catastro/{{encodeURL(trim(parameters.reference))}}/polygon",
+    "method": "GET",
+    "qs": {
+        "country": "{{parameters.country}}"
+    },
+    "response": {
+        "output": {
+            "reference": "{{ifempty(body.data.refCatastral, body.data.refcat)}}",
+            "country": "{{ifempty(body.data.pais, parameters.country)}}",
+            "lat": "{{ifempty(body.data.latitud, body.data.centroid.latitude)}}",
+            "lon": "{{ifempty(body.data.longitud, body.data.centroid.longitude)}}",
+            "areaM2": "{{ifempty(body.data.area, body.data.superficieParcela)}}",
+            "geojson": "{{body.data.geojson}}",
+            "outlineLatLng": "{{body.data.poligono}}"
+        }
+    }
+}

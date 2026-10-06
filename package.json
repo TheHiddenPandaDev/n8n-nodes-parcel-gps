@@ -1,0 +1,68 @@
+{
+	"name": "n8n-nodes-parcel-gps",
+	"version": "0.1.0",
+	"description": "n8n node for the Parcel GPS API: official cadastral parcels from 29 European countries by cadastral reference, coordinates or free text",
+	"license": "MIT",
+	"homepage": "https://www.parcelgps.com/developers",
+	"keywords": [
+		"n8n-community-node-package",
+		"n8n",
+		"parcel-gps",
+		"catastro-gps",
+		"cadastre",
+		"cadastral",
+		"catastro",
+		"parcel",
+		"land-registry",
+		"geojson",
+		"gis",
+		"europe"
+	],
+	"author": {
+		"name": "The Hidden Panda",
+		"email": "soporte@catastrogps.es"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/TheHiddenPandaDev/n8n-nodes-parcel-gps.git"
+	},
+	"bugs": {
+		"url": "https://github.com/TheHiddenPandaDev/n8n-nodes-parcel-gps/issues"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"test": "vitest run",
+		"test:coverage": "vitest run --coverage",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/ParcelGpsApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/ParcelGps/ParcelGps.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"@vitest/coverage-v8": "^3.2.4",
+		"eslint": "9.39.4",
+		"prettier": "3.8.3",
+		"release-it": "20.2.0",
+		"typescript": "5.9.3",
+		"vitest": "^3.2.4"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}

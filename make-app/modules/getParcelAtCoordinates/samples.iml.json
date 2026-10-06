@@ -1,0 +1,35 @@
+{
+    "reference": "9872023VH5797S0001WX",
+    "country": "ES",
+    "lat": 40.4168,
+    "lon": -3.7038,
+    "areaM2": 250,
+    "builtAreaM2": 120,
+    "address": "CL MAYOR 1",
+    "postalCode": "28013",
+    "municipality": "MADRID",
+    "province": "MADRID",
+    "landUse": "Residencial",
+    "landClass": "Urbano",
+    "constructionYear": 1950,
+    "source": "catastro",
+    "googleMapsUrl": "https://www.google.com/maps?q=40.4168,-3.7038",
+    "outlineLatLng": [
+        [
+            40.4168,
+            -3.7038
+        ],
+        [
+            40.4169,
+            -3.7038
+        ],
+        [
+            40.4169,
+            -3.7037
+        ],
+        [
+            40.4168,
+            -3.7038
+        ]
+    ]
+}

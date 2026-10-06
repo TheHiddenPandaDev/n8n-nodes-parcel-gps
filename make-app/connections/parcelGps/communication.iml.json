@@ -1,0 +1,20 @@
+{
+    "url": "https://api.parcelgps.com/api/locations/provinces",
+    "method": "GET",
+    "headers": {
+        "X-API-Key": "{{parameters.apiKey}}",
+        "Accept": "application/json"
+    },
+    "response": {
+        "valid": "{{statusCode === 200}}",
+        "error": {
+            "message": "[{{statusCode}}] {{ifempty(body.error, \"Invalid API key\")}}",
+            "type": "InvalidAccessTokenError"
+        }
+    },
+    "log": {
+        "sanitize": [
+            "request.headers.x-api-key"
+        ]
+    }
+}

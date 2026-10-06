@@ -1,0 +1,140 @@
+[
+    {
+        "name": "reference",
+        "type": "text",
+        "label": "Cadastral reference",
+        "required": true,
+        "help": "Official cadastral reference as written in its country. For example: `9872023VH5797S0001WX`."
+    },
+    {
+        "name": "country",
+        "type": "select",
+        "label": "Country",
+        "options": [
+            {
+                "label": "Austria (AT)",
+                "value": "AT"
+            },
+            {
+                "label": "Belgium (BE)",
+                "value": "BE"
+            },
+            {
+                "label": "Bulgaria (BG)",
+                "value": "BG"
+            },
+            {
+                "label": "Cyprus (CY)",
+                "value": "CY"
+            },
+            {
+                "label": "Czechia (CZ)",
+                "value": "CZ"
+            },
+            {
+                "label": "Denmark (DK)",
+                "value": "DK"
+            },
+            {
+                "label": "Estonia (EE)",
+                "value": "EE"
+            },
+            {
+                "label": "Finland (FI)",
+                "value": "FI"
+            },
+            {
+                "label": "France (FR)",
+                "value": "FR"
+            },
+            {
+                "label": "Germany (DE)",
+                "value": "DE"
+            },
+            {
+                "label": "Greece (GR)",
+                "value": "GR"
+            },
+            {
+                "label": "Iceland (IS)",
+                "value": "IS"
+            },
+            {
+                "label": "Ireland (IE)",
+                "value": "IE"
+            },
+            {
+                "label": "Italy (IT)",
+                "value": "IT"
+            },
+            {
+                "label": "Latvia (LV)",
+                "value": "LV"
+            },
+            {
+                "label": "Liechtenstein (LI)",
+                "value": "LI"
+            },
+            {
+                "label": "Lithuania (LT)",
+                "value": "LT"
+            },
+            {
+                "label": "Luxembourg (LU)",
+                "value": "LU"
+            },
+            {
+                "label": "Netherlands (NL)",
+                "value": "NL"
+            },
+            {
+                "label": "Norway (NO)",
+                "value": "NO"
+            },
+            {
+                "label": "Poland (PL)",
+                "value": "PL"
+            },
+            {
+                "label": "Portugal (PT)",
+                "value": "PT"
+            },
+            {
+                "label": "Slovakia (SK)",
+                "value": "SK"
+            },
+            {
+                "label": "Slovenia (SI)",
+                "value": "SI"
+            },
+            {
+                "label": "Spain (ES)",
+                "value": "ES"
+            },
+            {
+                "label": "Spain - Basque Country foral cadastre (PV)",
+                "value": "PV"
+            },
+            {
+                "label": "Spain - Navarre foral cadastre (NA)",
+                "value": "NA"
+            },
+            {
+                "label": "Sweden (SE)",
+                "value": "SE"
+            },
+            {
+                "label": "Switzerland (CH)",
+                "value": "CH"
+            }
+        ],
+        "help": "Leave empty to detect the country from the reference format."
+    },
+    {
+        "name": "includeOutline",
+        "type": "boolean",
+        "label": "Include outline",
+        "default": false,
+        "help": "Adds the parcel outline as a list of [lat, lng] points when the official source provides it."
+    }
+]

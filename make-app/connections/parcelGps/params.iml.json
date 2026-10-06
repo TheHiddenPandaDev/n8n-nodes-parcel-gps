@@ -1,0 +1,10 @@
+[
+    {
+        "name": "apiKey",
+        "type": "password",
+        "label": "API Key",
+        "required": true,
+        "editable": true,
+        "help": "Your Parcel GPS API key. Get a free one (250 requests a month) at [parcelgps.com/developers](https://www.parcelgps.com/developers)."
+    }
+]

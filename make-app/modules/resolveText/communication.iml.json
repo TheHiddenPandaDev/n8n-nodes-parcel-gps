@@ -1,0 +1,20 @@
+{
+    "url": "/api/resolve",
+    "method": "GET",
+    "qs": {
+        "q": "{{parameters.text}}",
+        "hint": "{{parameters.hint}}"
+    },
+    "response": {
+        "output": {
+            "input": "{{body.data.input}}",
+            "ambiguous": "{{body.data.ambiguous}}",
+            "country": "{{first(body.data.candidates).country}}",
+            "kind": "{{first(body.data.candidates).kind}}",
+            "normalized": "{{first(body.data.candidates).normalized}}",
+            "confidence": "{{first(body.data.candidates).confidence}}",
+            "supported": "{{first(body.data.candidates).supported}}",
+            "candidates": "{{body.data.candidates}}"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "input": "9872023VH5797S0001WX",
+    "ambiguous": false,
+    "country": "ES",
+    "kind": "reference",
+    "normalized": "9872023VH5797S0001WX",
+    "confidence": 1,
+    "supported": true,
+    "candidates": [
+        {
+            "country": "ES",
+            "kind": "reference",
+            "normalized": "9872023VH5797S0001WX",
+            "confidence": 1,
+            "supported": true
+        }
+    ]
+}

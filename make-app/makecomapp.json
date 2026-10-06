@@ -1,0 +1,115 @@
+{
+    "fileVersion": 1,
+    "generalCodeFiles": {
+        "base": "general/base.iml.json",
+        "common": "general/common.json",
+        "readme": "README.md",
+        "groups": "general/groups.json"
+    },
+    "components": {
+        "connection": {
+            "parcelGps": {
+                "label": "Parcel GPS",
+                "connectionType": "basic",
+                "codeFiles": {
+                    "communication": "connections/parcelGps/communication.iml.json",
+                    "common": "connections/parcelGps/common.json",
+                    "params": "connections/parcelGps/params.iml.json"
+                }
+            }
+        },
+        "webhook": {},
+        "module": {
+            "getParcelByReference": {
+                "label": "Get a Parcel by Reference",
+                "description": "Gets an official cadastral parcel from its cadastral reference in 29 European countries.",
+                "moduleType": "action",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/getParcelByReference/communication.iml.json",
+                    "staticParams": "modules/getParcelByReference/static-params.iml.json",
+                    "mappableParams": "modules/getParcelByReference/mappable-params.iml.json",
+                    "interface": "modules/getParcelByReference/interface.iml.json",
+                    "samples": "modules/getParcelByReference/samples.iml.json"
+                }
+            },
+            "getParcelAtCoordinates": {
+                "label": "Get a Parcel at Coordinates",
+                "description": "Gets the official cadastral parcel that contains a WGS84 point.",
+                "moduleType": "action",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/getParcelAtCoordinates/communication.iml.json",
+                    "staticParams": "modules/getParcelAtCoordinates/static-params.iml.json",
+                    "mappableParams": "modules/getParcelAtCoordinates/mappable-params.iml.json",
+                    "interface": "modules/getParcelAtCoordinates/interface.iml.json",
+                    "samples": "modules/getParcelAtCoordinates/samples.iml.json"
+                }
+            },
+            "getParcelGeometry": {
+                "label": "Get a Parcel Geometry",
+                "description": "Gets the outline of a cadastral parcel as GeoJSON with its centroid and area.",
+                "moduleType": "action",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/getParcelGeometry/communication.iml.json",
+                    "staticParams": "modules/getParcelGeometry/static-params.iml.json",
+                    "mappableParams": "modules/getParcelGeometry/mappable-params.iml.json",
+                    "interface": "modules/getParcelGeometry/interface.iml.json",
+                    "samples": "modules/getParcelGeometry/samples.iml.json"
+                }
+            },
+            "resolveText": {
+                "label": "Resolve Text",
+                "description": "Classifies free text as a cadastral reference, coordinates or a place name and detects its country.",
+                "moduleType": "action",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/resolveText/communication.iml.json",
+                    "staticParams": "modules/resolveText/static-params.iml.json",
+                    "mappableParams": "modules/resolveText/mappable-params.iml.json",
+                    "interface": "modules/resolveText/interface.iml.json",
+                    "samples": "modules/resolveText/samples.iml.json"
+                }
+            },
+            "searchParcelsByAddress": {
+                "label": "Search Parcels by Address",
+                "description": "Searches for the cadastral parcels that match a postal address in 27 countries.",
+                "moduleType": "search",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/searchParcelsByAddress/communication.iml.json",
+                    "staticParams": "modules/searchParcelsByAddress/static-params.iml.json",
+                    "mappableParams": "modules/searchParcelsByAddress/mappable-params.iml.json",
+                    "interface": "modules/searchParcelsByAddress/interface.iml.json",
+                    "samples": "modules/searchParcelsByAddress/samples.iml.json"
+                }
+            },
+            "makeApiCall": {
+                "label": "Make an API Call",
+                "description": "Performs an arbitrary authorized API call.",
+                "moduleType": "universal",
+                "connection": "parcelGps",
+                "codeFiles": {
+                    "communication": "modules/makeApiCall/communication.iml.json",
+                    "staticParams": "modules/makeApiCall/static-params.iml.json",
+                    "mappableParams": "modules/makeApiCall/mappable-params.iml.json",
+                    "interface": "modules/makeApiCall/interface.iml.json",
+                    "samples": "modules/makeApiCall/samples.iml.json"
+                }
+            }
+        },
+        "rpc": {},
+        "function": {},
+        "endpoint": {}
+    },
+    "origins": [
+        {
+            "label": "Parcel GPS",
+            "baseUrl": "https://eu1.make.com/api",
+            "appId": "parcel-gps",
+            "appVersion": 1,
+            "apikeyFile": "../.secrets/apikey"
+        }
+    ]
+}

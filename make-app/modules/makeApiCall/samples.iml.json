@@ -1,0 +1,12 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "x-quota-remaining": "249"
+    },
+    "body": {
+        "success": true,
+        "data": {
+            "refCatastral": "9872023VH5797S0001WX"
+        }
+    }
+}
