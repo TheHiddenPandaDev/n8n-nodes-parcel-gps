@@ -107,9 +107,46 @@
         {
             "label": "Parcel GPS",
             "baseUrl": "https://eu1.make.com/api",
-            "appId": "parcel-gps",
+            "appId": "parcel-gps-qmdiog",
             "appVersion": 1,
-            "apikeyFile": "../.secrets/apikey"
+            "apikeyFile": "../.secrets/apikey",
+            "idMapping": {
+                "connection": [
+                    {
+                        "local": "parcelGps",
+                        "remote": "parcel-gps-qmdiog"
+                    }
+                ],
+                "module": [
+                    {
+                        "local": "getParcelByReference",
+                        "remote": "getParcelByReference"
+                    },
+                    {
+                        "local": "getParcelAtCoordinates",
+                        "remote": "getParcelAtCoordinates"
+                    },
+                    {
+                        "local": "getParcelGeometry",
+                        "remote": "getParcelGeometry"
+                    },
+                    {
+                        "local": "resolveText",
+                        "remote": "resolveText"
+                    },
+                    {
+                        "local": "searchParcelsByAddress",
+                        "remote": "searchParcelsByAddress"
+                    },
+                    {
+                        "local": "makeApiCall",
+                        "remote": "makeApiCall"
+                    }
+                ],
+                "webhook": [],
+                "rpc": [],
+                "function": []
+            }
         }
     ]
 }
