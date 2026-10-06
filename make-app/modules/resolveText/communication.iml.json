@@ -9,11 +9,11 @@
         "output": {
             "input": "{{body.data.input}}",
             "ambiguous": "{{body.data.ambiguous}}",
-            "country": "{{first(body.data.candidates).country}}",
-            "kind": "{{first(body.data.candidates).kind}}",
-            "normalized": "{{first(body.data.candidates).normalized}}",
-            "confidence": "{{first(body.data.candidates).confidence}}",
-            "supported": "{{first(body.data.candidates).supported}}",
+            "country": "{{get(first(body.data.candidates), 'country')}}",
+            "kind": "{{get(first(body.data.candidates), 'kind')}}",
+            "normalized": "{{get(first(body.data.candidates), 'normalized')}}",
+            "confidence": "{{get(first(body.data.candidates), 'confidence')}}",
+            "supported": "{{get(first(body.data.candidates), 'supported')}}",
             "candidates": "{{body.data.candidates}}"
         }
     }
