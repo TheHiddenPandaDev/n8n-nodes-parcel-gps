@@ -29,9 +29,13 @@ jobs:
       - name: Test
         run: npm test
 
-      - name: Release
-        run: |
-          [ -n "$NPM_TOKEN" ] && npm config set //registry.npmjs.org/:_authToken "$NPM_TOKEN"
-          npm run release
+      - name: Build
+        run: npm run build
+
+      - name: Update npm for trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Publish
+        run: npm publish --provenance --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          RELEASE_MODE: 'true'
